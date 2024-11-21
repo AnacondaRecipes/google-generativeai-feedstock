@@ -6,23 +6,28 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/google-gemini/generative-ai-python/archive/v{{ version }}.tar.gz
+  url: https://github.com/google-gemini/generative-ai-python/archive/refs/tags/v{{ version }}.tar.gz
   sha256: ca2c7ddad2cc89c6b0d8db2a569b6d8f1257e4b954ddee5eee164a80b2fc4eb1
+  patches:
+    - 0001-Use-0.6.12-version-of-google-ai-generativelanguage.patch
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [py<39]
 
 requirements:
   host:
-    - python >=3.9
+    - python
     - pip
     - setuptools
+    - wheel
   run:
-    - python >=3.9
-    - google-ai-generativelanguage =0.6.10
+    - python
+    # - https://staging.continuum.io/prefect/fs/google-ai-generativelanguage-feedstock/pr1/61b3c8c
+    - google-ai-generativelanguage >=0.6.10
     - google-api-core
+    # - https://staging.continuum.io/prefect/fs/google-api-python-client-feedstock/pr1/fac0ff0
     - google-api-python-client
     - google-auth >=2.15.0
     - protobuf
@@ -31,18 +36,34 @@ requirements:
     - typing-extensions
 
 test:
+  source_files:
+    - tests
   imports:
     - google
   commands:
     - pip check
+    - pytest -v tests
   requires:
     - pip
+    - pytest
+    - absl-py
+    - grpcio
+    - black
+    - nose2
+    - pandas
+    - pyyaml
+    - Pillow
+    - ipython
 
 about:
   home: https://github.com/google/generative-ai-python
   summary: The Gemini API Python SDK enables developers to use Google's state-of-the-art generative AI models to build AI-powered features and applications.
   license: Apache-2.0
   license_file: LICENSE
+  license_family: Apache
+  description: The Google AI Python SDK is the easiest way for Python developers to build with the Gemini API. 
+  dev_url: https://github.com/google-gemini/generative-ai-python
+  doc_url: https://github.com/google-gemini/cookbook
 
 extra:
   recipe-maintainers:

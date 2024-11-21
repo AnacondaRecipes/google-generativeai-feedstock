@@ -1,0 +1,6 @@
+upload_channels:
+  - sfe1ed40
+
+channels:
+  - https://staging.continuum.io/prefect/fs/google-ai-generativelanguage-feedstock/pr1/61b3c8c
+  - https://staging.continuum.io/prefect/fs/google-api-python-client-feedstock/pr1/fac0ff0
