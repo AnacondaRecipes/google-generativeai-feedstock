@@ -48,9 +48,7 @@ test:
     - pip
     - pytest
     - absl-py
-    - grpcio
     - black
-    - nose2
     - pandas
     - pyyaml
     - Pillow
