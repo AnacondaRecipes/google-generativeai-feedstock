@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/google-gemini/generative-ai-python/archive/refs/tags/v{{ version }}.tar.gz
   sha256: ca2c7ddad2cc89c6b0d8db2a569b6d8f1257e4b954ddee5eee164a80b2fc4eb1
-  patches:
-    - patches/0001-Use-0.6.12-version-of-google-ai-generativelanguage.patch
 
 build:
   number: 0
@@ -17,9 +15,6 @@ build:
   skip: True  # [py<39]
 
 requirements:
-  build: 
-    - patch  # [not win]
-    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -27,7 +22,7 @@ requirements:
     - wheel
   run:
     - python
-    - google-ai-generativelanguage >=0.6.10,<=0.6.12 # 0.6.10 hardcoded in the requirements
+    - google-ai-generativelanguage >=0.6.10,<=0.6.10
     - google-api-core
     - google-api-python-client
     - google-auth >=2.15.0
