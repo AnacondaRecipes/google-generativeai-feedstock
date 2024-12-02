@@ -1,5 +1,2 @@
 upload_channels:
   - sfe1ed40
-
-channels:
-  - https://staging.continuum.io/prefect/fs/google-ai-generativelanguage-feedstock/pr1/b93a53c
