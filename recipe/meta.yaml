@@ -48,6 +48,7 @@ test:
     - pyyaml
     - Pillow
     - ipython
+    - grpcio
 
 about:
   home: https://github.com/google/generative-ai-python
